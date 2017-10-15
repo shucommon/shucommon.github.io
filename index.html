@@ -28,15 +28,38 @@
       <img src="img/lucky.jpg" width="400" height="400">
       <button type="button" onclick="alert('Welcome!')">Click</button>
       
-      <script src="script.js"></script>
-      
       <h3>Google Map</h3>
-      <div id="googlemap" style="width:400px;height:400px;background:blue"></div>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBowbDSvZV3Bdgriiu7pYlvkfokkso9aDk&callback=GoogleMap"></script>
-    
-      <h3>Baidu Map</h3>
+
+      <div id="map" style="width:400px;height:400px;background:blue"></div>
+      <script>
+      function myMap() {
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = {
+          center: new google.maps.LatLng(30.9, 121.94), zoom: 12
+        };
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+      }
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBowbDSvZV3Bdgriiu7pYlvkfokkso9aDk&callback=myMap"></script>
+
+      <h2>Baidu Map</h2>
+
       <div id="baidumap" style="width:400px;height:400px;background:blue"></div>
-      <script src="http://api.map.baidu.com/api?v=1.5&ak=u5RFvgUTdOSVYhrW6uIRRdAtklwEkM44&callback=BaiduMap"></script>      
+
+      <script>
+      function BaiduMap() {
+        var bdmap = new BMap.Map("baidumap");
+        bdmap.centerAndZoom(new BMap.Point(121.94, 30.9), 12);
+        // enable mouse scroll
+        bdmap.enableScrollWheelZoom();
+        bdmap.addEventListener("click",showInfo);
+        function showInfo(e){
+            alert("longitude："+e.point.lng+",latitude: "+e.point.lat);
+        }  
+      }
+      </script>
+      <script src="http://api.map.baidu.com/api?v=1.5&ak=u5RFvgUTdOSVYhrW6uIRRdAtklwEkM44&callback=BaiduMap"></script>
 
       <footer class="site-footer">
         <span class="site-footer-credits"> <a href="https://pages.github.com"> git pages </a> contact me <a href="www.linkedin.com/in/qiangguo88"> linkedin </a> </span>
